@@ -25,10 +25,10 @@ from copy import deepcopy
 from datetime import datetime, timedelta
 from pathlib import Path
 
-try:
-    import comet_ml  # must be imported before torch (if installed)
-except ImportError:
-    comet_ml = None
+# try:
+#     import comet_ml  # must be imported before torch (if installed)
+# except ImportError:
+#     comet_ml = None
 
 import numpy as np
 import torch
@@ -150,21 +150,21 @@ def train(hyp, opt, device, callbacks):
         if getattr(opt, "ndjson_file", False):
             include_loggers.append("ndjson_file")
 
-        loggers = Loggers(
-            save_dir=save_dir,
-            weights=weights,
-            opt=opt,
-            hyp=hyp,
-            logger=LOGGER,
-            include=tuple(include_loggers),
-        )
+        # loggers = Loggers(
+        #     save_dir=save_dir,
+        #     weights=weights,
+        #     opt=opt,
+        #     hyp=hyp,
+        #     logger=LOGGER,
+        #     include=tuple(include_loggers),
+        # )
 
-        # Register actions
-        for k in methods(loggers):
-            callbacks.register_action(k, callback=getattr(loggers, k))
+        # # Register actions
+        # for k in methods(loggers):
+        #     callbacks.register_action(k, callback=getattr(loggers, k))
 
-        # Process custom dataset artifact link
-        data_dict = loggers.remote_dataset
+        # # Process custom dataset artifact link
+        # data_dict = loggers.remote_dataset
         if resume:  # If resuming runs from remote artifact
             weights, epochs, hyp, batch_size = opt.weights, opt.epochs, opt.hyp, opt.batch_size
 
