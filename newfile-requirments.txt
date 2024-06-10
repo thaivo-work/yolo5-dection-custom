@@ -5,5 +5,5 @@ langchain
 openai
 pandas
 tabulate
-locust==2.14.0
+locust==2.29.0
 loguru
